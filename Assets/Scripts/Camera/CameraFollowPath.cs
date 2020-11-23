@@ -39,9 +39,18 @@ public class CameraFollowPath : MonoBehaviour
         {
             var target = _locations[_nextLocation];
             target.z = transform.position.z;
-            target.y = Vector3.MoveTowards(startingPos, target, 100 * Time.deltaTime).y;
+            target.y = Vector3.MoveTowards(startingPos, target, 3 * Time.deltaTime).y;
             target.x = playerTransform.position.x;
             newPos = target;
+
+            float dist = Vector3.Distance(transform.position, _locations[_nextLocation]);
+            if (dist < 0.003)
+            {
+                _nextLocation += 1;
+                _previousLocation += 1;
+
+                if (_nextLocation > _locations.Count) _nextLocation = _locations.Count;
+            } 
         }
 
         if (Input.GetKey(KeyCode.A))
