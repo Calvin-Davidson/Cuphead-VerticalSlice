@@ -21,41 +21,38 @@ public class CameraFollowPath : MonoBehaviour
             _locations.Add(transform1.position);
         }
         _locations.Remove(_locations[0]);
+
+        var trans = transform.position;
+        var target = _locations[_nextLocation];
+        target.z = trans.z;
+        target.y = Vector3.MoveTowards(trans, target, 100 * Time.deltaTime).y;
+        target.x = playerTransform.position.x;
+        transform.position = target;
     }
 
     public void Update()
     {
-        Transform trans = transform;
+        Vector3 startingPos = transform.position;
+        Vector3 newPos = startingPos;
+        
         if (Input.GetKey(KeyCode.D))
         {
             var target = _locations[_nextLocation];
             target.z = transform.position.z;
-            target.y = Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
+            target.y = Vector3.MoveTowards(startingPos, target, 100 * Time.deltaTime).y;
             target.x = playerTransform.position.x;
-            trans.position = target;
-            
-            if (Vector3.Distance(transform.position, _locations[_nextLocation]) < 0.001)
-            {
-                _previousLocation += 1;
-                _nextLocation += 1;
-                if (_nextLocation > _locations.Count) _nextLocation = _locations.Count;
-            }
+            newPos = target;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             var target = _locations[_previousLocation];
             target.z = transform.position.z;
-            target.y = Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
+            target.y = Vector3.MoveTowards(startingPos, target, 3 * Time.deltaTime).y;
             target.x = playerTransform.position.x;
-            trans.position = target;
-            if (Vector3.Distance(trans.position, _locations[_previousLocation]) < 0.001)
-            {
-                _previousLocation -= 1;
-                _nextLocation -= 1;
-                if (_previousLocation < 0) _previousLocation = 0;
-            }
+            newPos = target;
         }
-        
+        transform.position = newPos;
+
     }
 }

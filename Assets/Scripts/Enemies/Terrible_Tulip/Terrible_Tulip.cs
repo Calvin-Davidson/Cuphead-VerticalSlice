@@ -14,5 +14,7 @@ public class Terrible_Tulip : BaseEnemy
 
         float randomX = Random.Range(1, 3) == 1 ? Random.Range(-0.5f, -0.9f) : Random.Range(0.5f, 0.9f);
         rigidbody2D.velocity = new Vector2(randomX, 8.5f);
+        
+        Destroy(bullet, 10f);
     }
 }
