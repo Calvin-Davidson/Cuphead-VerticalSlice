@@ -26,14 +26,14 @@ public class CameraFollowPath : MonoBehaviour
     public void Update()
     {
         Transform trans = transform;
-        Vector3 newPos = Vector3.zero;
         if (Input.GetKey(KeyCode.D))
         {
             var target = _locations[_nextLocation];
-            newPos.z += transform.position.z;
-            newPos.y += Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
-            newPos.x += playerTransform.position.x;
-
+            target.z = transform.position.z;
+            target.y = Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
+            target.x = playerTransform.position.x;
+            trans.position = target;
+            
             if (Vector3.Distance(transform.position, _locations[_nextLocation]) < 0.001)
             {
                 _previousLocation += 1;
@@ -45,9 +45,9 @@ public class CameraFollowPath : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             var target = _locations[_previousLocation];
-            newPos.z = transform.position.z;
-            newPos.y = Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
-            newPos.x = playerTransform.position.x;
+            target.z = transform.position.z;
+            target.y = Vector3.MoveTowards(trans.position, target, 3 * Time.deltaTime).y;
+            target.x = playerTransform.position.x;
             trans.position = target;
             if (Vector3.Distance(trans.position, _locations[_previousLocation]) < 0.001)
             {
