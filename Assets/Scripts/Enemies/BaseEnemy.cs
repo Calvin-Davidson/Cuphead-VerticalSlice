@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private float attackSpeed;
     private float _attackTimer;
@@ -15,8 +15,5 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected virtual void Attack()
-    {
-        return;
-    }
+    protected abstract void Attack();
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Toothy_Terror : MonoBehaviour
+public class ToothyTerror : MonoBehaviour
 {
   [SerializeField] private UnityEvent endPointReach = new UnityEvent();
   [SerializeField] private UnityEvent beginPointReach = new UnityEvent();
@@ -23,24 +23,14 @@ public class Toothy_Terror : MonoBehaviour
     {
       return;
     }
-    
-    if (_toBegin)
+
+    Vector3 target = _toBegin ? beginPoint : endPoint;
+    transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    if (transform.position.Equals(target))
     {
-      transform.position = Vector3.MoveTowards(transform.position, beginPoint, speed * Time.deltaTime);
-      if (transform.position.Equals(beginPoint))
-      {
-        _toBegin = false;
-        beginPointReach.Invoke();
-      }
-    }
-    else
-    {
-      transform.position = Vector3.MoveTowards(transform.position, endPoint, speed * Time.deltaTime);
-      if (transform.position.Equals(endPoint))
-      {
-        _toBegin = true;
-        endPointReach.Invoke();
-      }
+      _toBegin = !_toBegin;
+      if (_toBegin) endPointReach.Invoke();
+      if (!_toBegin) beginPointReach.Invoke();
     }
   }
 }
