@@ -12,6 +12,9 @@ public class CameraFollowPath : MonoBehaviour
     private int _previousLocation = 0;
     private int _nextLocation = 1;
 
+    [SerializeField] private GameObject debugObjPrevPos;
+    [SerializeField] private GameObject debugObjNextPos;
+    
     private void Awake()
     {
         _locations = new List<Vector3>();
@@ -32,36 +35,61 @@ public class CameraFollowPath : MonoBehaviour
 
     public void Update()
     {
+        CheckValidLocationsCounters();
+        debugObjPrevPos.transform.position = _locations[_previousLocation];
+        debugObjNextPos.transform.position = _locations[_nextLocation];
+        
         Vector3 startingPos = transform.position;
         Vector3 newPos = startingPos;
         
         if (Input.GetKey(KeyCode.D))
         {
-            var target = _locations[_nextLocation];
-            target.z = transform.position.z;
-            target.y = Vector3.MoveTowards(startingPos, target, 3 * Time.deltaTime).y;
-            target.x = playerTransform.position.x;
-            newPos = target;
+            newPos = GetCameraPosition(_locations[_nextLocation]);
 
             float dist = Vector3.Distance(transform.position, _locations[_nextLocation]);
-            if (dist < 0.003)
+            if (dist < 0.015)
             {
                 _nextLocation += 1;
                 _previousLocation += 1;
-
-                if (_nextLocation > _locations.Count) _nextLocation = _locations.Count;
+                CheckValidLocationsCounters();
             } 
         }
-
         if (Input.GetKey(KeyCode.A))
         {
-            var target = _locations[_previousLocation];
-            target.z = transform.position.z;
-            target.y = Vector3.MoveTowards(startingPos, target, 3 * Time.deltaTime).y;
-            target.x = playerTransform.position.x;
-            newPos = target;
+            newPos = GetCameraPosition(_locations[_previousLocation]);
+            float dist = Vector3.Distance(transform.position, _locations[_previousLocation]);
+            if (dist < 0.015)
+            {
+                _nextLocation -= 1;
+                _previousLocation -= 1;
+                CheckValidLocationsCounters();
+            } 
         }
         transform.position = newPos;
+    }
+
+    public Vector3 GetCameraPosition(Vector3 targetPos)
+    {
+        Vector3 startingPos = transform.position;
+        var target = targetPos;
+        target.z = startingPos.z;
+        target.y = Vector3.MoveTowards(startingPos, target, 3 * Time.deltaTime).y;
+        target.x = playerTransform.position.x;
+        return target;
+    }
+
+    public void CheckValidLocationsCounters()
+    {
+        if (_nextLocation > _locations.Count)
+        {
+            _previousLocation = _locations.Count - 2;
+            _nextLocation = _locations.Count - 1;
+        }
+        if (_previousLocation < 0)
+        {
+            _previousLocation = 0;
+            _nextLocation = 1;
+        }
 
     }
 }

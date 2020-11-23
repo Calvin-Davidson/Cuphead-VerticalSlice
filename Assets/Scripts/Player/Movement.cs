@@ -12,16 +12,18 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        Vector3 localScale = transform.localScale;
+        
         if (Input.GetKey(KeyCode.A))
         {
             this.transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
-            this.transform.localScale = new Vector3(-Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-Math.Abs(localScale.x), localScale.y, localScale.z);
         }
         
         if (Input.GetKey(KeyCode.D))
         {
             this.transform.position += new Vector3(3 * Time.deltaTime, 0, 0);
-            this.transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Math.Abs(localScale.x), localScale.y, localScale.z);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
