@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class ChangeCollisionOnPlayerPos : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Transform playerFeetTransform;
     [SerializeField] private Vector3 playerFeetPos;
     [SerializeField] float yHeight;
     
-    // Update is called once per frame
     void Update()
     {
         playerFeetPos = playerFeetTransform.position;
-        collider.enabled = !(playerFeetPos.y < yHeight);
+        boxCollider.enabled = !(playerFeetPos.y < yHeight);
 
         if (Input.GetKey(KeyCode.S))
         {
-            collider.enabled = false;
+            boxCollider.enabled = false;
         }
     }
 }

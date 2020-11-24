@@ -7,7 +7,6 @@ public class CameraFollowPath : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
     [SerializeField] private GameObject parentObj;
-    [SerializeField] private float maxDistanceFromPlayer = 0;
     private List<Vector3> _locations;
     private int _previousLocation = 0;
     private int _nextLocation = 1;
@@ -57,7 +56,6 @@ public class CameraFollowPath : MonoBehaviour
             {
                 _nextLocation += 1;
                 _previousLocation += 1;
-                CheckValidLocationsCounters();
             }
         }
 
@@ -69,10 +67,10 @@ public class CameraFollowPath : MonoBehaviour
             {
                 _nextLocation -= 1;
                 _previousLocation -= 1;
-                CheckValidLocationsCounters();
             }
         }
-
+        
+        CheckValidLocationsCounters();
         transform.position = newPos;
     }
 
@@ -96,9 +94,6 @@ public class CameraFollowPath : MonoBehaviour
         float minX = Mathf.Min(_locations[_previousLocation].x, _locations[_nextLocation].x);
         float maxX = Mathf.Max(_locations[_previousLocation].x, _locations[_nextLocation].x);
         return (transform.position.x-minX)/(maxX-minX);
-        
-//       return Mathf.Lerp(_locations[_previousLocation].y, _locations[_nextLocation].y, 4.5f);
-//        return (float) Math.Sqrt((float) Math.Pow(diffX, 2) + (float) Math.Pow(diffY, 2));
     }
 
     private void CheckValidLocationsCounters()
