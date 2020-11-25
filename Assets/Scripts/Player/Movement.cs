@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
     [SerializeField] private float jumpHeight = 4.5f;
+    [SerializeField] private Animator animator;
     void Start()
     {
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
@@ -12,6 +13,12 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            animator.Play("Cuphead_Idle");
+            return;
+        }
+        
         Vector3 localScale = transform.localScale;
         
         if (Input.GetKey(KeyCode.A))
