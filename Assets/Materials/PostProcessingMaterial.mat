@@ -140,7 +140,7 @@ Material:
     - _octaves: 7
     - _offsetX: -5.13
     - _offsetY: 0
-    - _overlayIntensity: 0.09
+    - _overlayIntensity: 0.1166
     - _overlayScale: 3
     - _power: 4.34
     - _range: 0.041
