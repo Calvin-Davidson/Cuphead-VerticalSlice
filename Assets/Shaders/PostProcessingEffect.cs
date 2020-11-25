@@ -46,7 +46,7 @@ public class PostProcessingEffect : ScriptableRendererFeature
     [System.Serializable]
     public class Settings
     {
-        public Material material = null;    
+        public Material material = null;
     }
 
     public Settings settings = new Settings();

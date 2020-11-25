@@ -4,8 +4,10 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
+    [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private float jumpHeight = 4.5f;
     [SerializeField] private Animator animator;
+    
     void Start()
     {
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
@@ -13,6 +15,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
             animator.Play("Cuphead_Idle");
@@ -23,15 +26,17 @@ public class Movement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
+            this.transform.position += new Vector3(-movementSpeed * Time.deltaTime, 0, 0);
             transform.localScale = new Vector3(-Math.Abs(localScale.x), localScale.y, localScale.z);
         }
         
         if (Input.GetKey(KeyCode.D))
         {
-            this.transform.position += new Vector3(3 * Time.deltaTime, 0, 0);
+            this.transform.position += new Vector3(movementSpeed * Time.deltaTime, 0, 0);
             transform.localScale = new Vector3(Math.Abs(localScale.x), localScale.y, localScale.z);
         }
+
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
