@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     
     void Start()
     {
+        
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
     }
 
