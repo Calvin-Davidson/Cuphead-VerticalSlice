@@ -7,7 +7,7 @@
         _desaturationStrength("Desaturation strength", Range(0,1)) = 0
         _desaturationBrightness("Desaturation brightness", Range(-0.05,0.15)) = 0
         _OverlayTexture ("Overlay", 2D) = "white" {}
-        _overlayIntensity("Overlay intensity", Range(0,0.25)) = 0
+        _overlayIntensity("Overlay intensity", Range(0,0.25)) = 0.075
         _NoiseMaskTexture("Noise Mask", 2D) = "white" {}
         _noiseMaskIntensity ("Noise Mask intensity", Range(0,1)) = 0
         _offsetX("Offset X",Float) = 0.0

@@ -4,10 +4,19 @@ using UnityEngine.Rendering.Universal;
 
 public class PostProcessingEffect : ScriptableRendererFeature
 {
-    class CustomRenderPass : ScriptableRenderPass
+    [System.Serializable]
+    public class Settings
+    {
+        public Material material = null;
+    }
+
+    public Settings settings = new Settings();
+    public CustomRenderPass m_ScriptablePass;
+
+    public class CustomRenderPass : ScriptableRenderPass
     {
         public RenderTargetIdentifier source;
-        private Material material;
+        public Material material;
         private RenderTargetHandle tempRenderTargetHandler;
         public CustomRenderPass(Material material)
         {
@@ -42,16 +51,6 @@ public class PostProcessingEffect : ScriptableRendererFeature
         {
         }
     }
-
-    [System.Serializable]
-    public class Settings
-    {
-        public Material material = null;
-    }
-
-    public Settings settings = new Settings();
-
-    CustomRenderPass m_ScriptablePass;
 
     public override void Create()
     {

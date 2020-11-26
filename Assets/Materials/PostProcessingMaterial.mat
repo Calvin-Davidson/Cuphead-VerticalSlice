@@ -121,7 +121,7 @@ Material:
     - _ZWrite: 1
     - _amplitude: 5
     - _desaturate: 0
-    - _desaturationBrightness: 0.071
+    - _desaturationBrightness: 0.118
     - _desaturationStrength: 1
     - _frequency: 3.28
     - _gain: 1
@@ -145,7 +145,7 @@ Material:
     - _power: 4.34
     - _range: 0.041
     - _scale: 3
-    - _speedU: -1.33
+    - _speedU: 1.31
     - _speedV: 0
     - _value: -2
     m_Colors:

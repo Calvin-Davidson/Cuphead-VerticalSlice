@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: 2100000, guid: 0ae34a80ce179a0478d8a8d82af6abe8, type: 2}
-    speedModifier: 0
+    dynamic: 1
