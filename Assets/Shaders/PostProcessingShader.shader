@@ -2,14 +2,19 @@
 {
     Properties //Declare properties
     {
-        _MainTex ("Main", 2D) = "white" {} //Main camera input
+        //Main camera input
+        _MainTex ("Main", 2D) = "white" {}
+        //Desaturation properties
         [Toggle] _desaturate("Desaturate", Float) = 0
         _desaturationStrength("Desaturation strength", Range(0,1)) = 0
         _desaturationBrightness("Desaturation brightness", Range(-0.05,0.15)) = 0
+        //Overlay properties
         _OverlayTexture ("Overlay", 2D) = "white" {}
         _overlayIntensity("Overlay intensity", Range(0,0.25)) = 0.075
+        //Noise mask properties
         _NoiseMaskTexture("Noise Mask", 2D) = "white" {}
         _noiseMaskIntensity ("Noise Mask intensity", Range(0,1)) = 0
+        //Noise properties
         _offsetX("Offset X",Float) = 0.0
         _offsetY("Offset Y",Float) = 0.0
         _octaves("Octaves",Int) = 7
@@ -49,6 +54,7 @@
                 float2 uv : TEXCOORD0;
             };
 
+            //Declare variables
             float _octaves, _lacunarity, _gain, _value, _amplitude, _frequency, _offsetX, _offsetY, _power, _scale, _range, _speedU, _speedV, _noiseMaskIntensity, _overlayIntensity, _desaturate, _desaturationStrength, _desaturationBrightness;
             sampler2D _MainTex, _OverlayTexture, _NoiseMaskTexture; //Declare textures
             uniform float4  _OverlayTexture_ST, _NoiseMaskTexture_ST; //Declare Scale and Transform properties of the texture. x/y correspond to the scale x/y inputs in the editor, z/w correspond to the offset x/y inputs in the editor
@@ -101,33 +107,44 @@
             fixed4 frag(SHADERDATA i) : SV_Target //Main shader
             {
                 fixed4 col = tex2D(_MainTex, i.uv); //Get color per pixel from camera
-                if (_desaturate > 0) { //Desaturation gets handles before everything else to not interfere with the overlay or noise masks
-                    fixed4 desaturation = fixed4(0.3 * col.r, 0.6 * col.g, 0.1 * col.b, 1.0f);
-                    col.r = col.r + _desaturationStrength * (desaturation - col.r) + _desaturationBrightness;
+                //Declare UVs that must be translated and scaled independently from the main camera UV
+                float2 overlayUV = i.uv.xy;
+                float2 noiseMaskUV = i.uv.xy;
+                float2 noiseUV = i.uv.xy;
+                //Translate UVs * gametime, allowing them to move. z/w values are fetched from the editor's offset input for textures
+                overlayUV.x += _Time * -_OverlayTexture_ST.z;
+                overlayUV.y += _Time * _OverlayTexture_ST.w;
+                noiseMaskUV.x += _Time * -_NoiseMaskTexture_ST.z;
+                noiseMaskUV.y += _Time * _NoiseMaskTexture_ST.w;
+                noiseUV.x += _Time * -_speedU;
+                noiseUV.y += _Time * _speedV;
+                //Scale  UVs
+                overlayUV.x *= _OverlayTexture_ST.x;
+                overlayUV.y *= _OverlayTexture_ST.y;
+                noiseMaskUV.x *= _NoiseMaskTexture_ST.x;
+                noiseMaskUV.y *= _NoiseMaskTexture_ST.y;
+                //Sample textures based on modified UVs
+                fixed4 overlayColor = tex2D(_OverlayTexture, overlayUV);
+                fixed4 noiseColor = tex2D(_NoiseMaskTexture, noiseMaskUV);
+
+                //Desaturation gets handled before everything else to not interfere with the overlay or noise masks
+                if (_desaturate > 0) {
+                    fixed4 desaturation = fixed4(0.3 * col.r, 0.6 * col.g, 0.1 * col.b, 1.0f); //DesaturationTable
+                    col.r = col.r + _desaturationStrength * (desaturation - col.r) + _desaturationBrightness; //Desaturate but add a brightness value to ensure the scene doesn't get too dark.
                     col.g = col.g + _desaturationStrength * (desaturation - col.g) + _desaturationBrightness;
                     col.b = col.b + _desaturationStrength * (desaturation - col.b) + _desaturationBrightness;
-                }
-                float2 overlayUV = i.uv.xy; //Declare overlay UV from main UV
-                overlayUV.x += _Time * -_OverlayTexture_ST.z; //Move overlay UV
-                overlayUV.y += _Time * _OverlayTexture_ST.w;
-                overlayUV.x *= _OverlayTexture_ST.x; //Scale overlay UV
-                overlayUV.y *= _OverlayTexture_ST.y;
-                fixed4 overlayColor = tex2D(_OverlayTexture, overlayUV);
-                float2 noiseMaskUV = i.uv.xy; //Declare noise mask UV from main UV
-                noiseMaskUV.x += _Time * -_NoiseMaskTexture_ST.z; //Move noise mask UV
-                noiseMaskUV.y += _Time * _NoiseMaskTexture_ST.w;
-                noiseMaskUV.x *= _NoiseMaskTexture_ST.x; //Scale noise mask UV
-                noiseMaskUV.y *= _NoiseMaskTexture_ST.y;
-                fixed4 noiseColor = tex2D(_NoiseMaskTexture, noiseMaskUV);
-                float2 noiseUV = i.uv.xy; //Declare noise UV from main UV
-                noiseUV.x += _Time * -_speedU; //Move noise UV
-                noiseUV.y += _Time * _speedV;          
-                if (overlayColor.r<1) { col.r = col.r - overlayColor.r * _overlayIntensity; } //Per color, affect it if the overlay mask color is <1 in that channel
+                } 
+
+                //Per color, affect it if the overlay mask color is <1 in that channel. Allows for 3 individual grayscale masks to affect each color independently
+                if (overlayColor.r<1) { col.r = col.r - overlayColor.r * _overlayIntensity; } //Substract overlay color from pixel color based on intensity
                 if (overlayColor.g<1) { col.g = col.g - overlayColor.g * _overlayIntensity; }
                 if (overlayColor.b<1) { col.b = col.b - overlayColor.b * _overlayIntensity; }
-                float c = fbm(noiseUV); //Calculate noise from noise function for this pixel
-                if (c >= _range) { //Filter by noise strength
-                    if (noiseColor.r < _noiseMaskIntensity) { col.r = col.r * c * noiseColor.r; } //Change pixel color to noice color but mask it by noise mask
+
+                //Calculate noise from noise function for this pixel
+                float c = fbm(noiseUV);
+                //Filter by noise strength
+                if (c >= _range) {
+                    if (noiseColor.r < _noiseMaskIntensity) { col.r = col.r * c * noiseColor.r; } //Change pixel per color channel to noise color but mask it by noise mask
                     if (noiseColor.g < _noiseMaskIntensity) { col.g = col.g * c * noiseColor.g; }
                     if (noiseColor.b < _noiseMaskIntensity) { col.b = col.b * c * noiseColor.b; }
                 }  

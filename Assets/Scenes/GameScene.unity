@@ -1162,8 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a9bb7610b1fd64b975d6a2d033e27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _postProcessingEffect: {fileID: 9129917313573165604, guid: 4a8e21d5c33334b11b34a596161b9360,
-    type: 2}
+  postProcessingEffect: {fileID: 0}
   input: DynamicShader
   keysListOnEnable:
   - _desaturate
@@ -1193,8 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a9bb7610b1fd64b975d6a2d033e27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _postProcessingEffect: {fileID: 9129917313573165604, guid: 4a8e21d5c33334b11b34a596161b9360,
-    type: 2}
+  postProcessingEffect: {fileID: 0}
   input: DynamicShader2
   keysListOnEnable:
   - _desaturate
