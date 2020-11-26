@@ -758,8 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 1499453148}
   playerFeetTransform: {fileID: 2066219314}
-  playerFeetPos: {x: 0, y: 0, z: 0}
-  yHeight: 1.68
+  minYOffset: 0.1
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +773,7 @@ GameObject:
   - component: {fileID: 1687258586}
   - component: {fileID: 1687258583}
   - component: {fileID: 1687258587}
+  - component: {fileID: 1687258588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -990,6 +990,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1687258588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687258581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a9bb7610b1fd64b975d6a2d033e27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessingEffect: {fileID: 0}
+  input: DynamicShader
+  keysListOnEnable:
+  - _desaturate
+  - _overlayIntensity
+  - _noiseMaskIntensity
+  valuesListOnEnable:
+  - 1
+  - 0.118
+  - 0.118
+  keysListOnDisable:
+  - _desaturate
+  - _overlayIntensity
+  - _noiseMaskIntensity
+  valuesListOnDisable:
+  - 0
+  - 0.075
+  - 0.066
 --- !u!1 &1914341838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,8 +1034,6 @@ GameObject:
   - component: {fileID: 1914341843}
   - component: {fileID: 1914341842}
   - component: {fileID: 1914341844}
-  - component: {fileID: 1914341845}
-  - component: {fileID: 1914341846}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1111,7 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  jumpHeight: 9
+  jumpStrength: 4.5
   animator: {fileID: 1914341839}
 --- !u!50 &1914341843
 Rigidbody2D:
@@ -1150,70 +1178,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.19325803, y: -0.740813}
   m_Size: {x: 3.7594693, y: 8.619942}
   m_Direction: 0
---- !u!114 &1914341845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914341838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a9bb7610b1fd64b975d6a2d033e27f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  postProcessingEffect: {fileID: 0}
-  input: DynamicShader
-  keysListOnEnable:
-  - _desaturate
-  - _overlayIntensity
-  - _noiseMaskIntensity
-  valuesListOnEnable:
-  - 1
-  - 0.118
-  - 0.118
-  keysListOnDisable:
-  - _desaturate
-  - _overlayIntensity
-  - _noiseMaskIntensity
-  valuesListOnDisable:
-  - 0
-  - 0.075
-  - 0.066
---- !u!114 &1914341846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914341838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a9bb7610b1fd64b975d6a2d033e27f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  postProcessingEffect: {fileID: 0}
-  input: DynamicShader2
-  keysListOnEnable:
-  - _desaturate
-  - _desaturationStrength
-  - _desaturationBrightness
-  - _noiseMaskIntensity
-  valuesListOnEnable:
-  - 1
-  - 0.1
-  - 0.15
-  - 0.5
-  keysListOnDisable:
-  - _desaturate
-  - _desaturationStrength
-  - _desaturationBrightness
-  - _noiseMaskIntensity
-  valuesListOnDisable:
-  - 0
-  - 1
-  - 0.118
-  - 0.066
 --- !u!1 &2064260361
 GameObject:
   m_ObjectHideFlags: 0
