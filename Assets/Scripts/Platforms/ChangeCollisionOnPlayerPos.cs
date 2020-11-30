@@ -18,7 +18,8 @@ public class ChangeCollisionOnPlayerPos : MonoBehaviour
     void Update()
     {
         _playerFeetPos = playerFeetTransform.position; //Update the position
-        boxCollider.enabled = !(_playerFeetPos.y < _minY); //Collider is enabled if the player's y is >= minY
+        Debug.Log(_playerFeetPos.y);
+        boxCollider.enabled = (_playerFeetPos.y > _minY); //Collider is enabled if the player's y is >= minY
 
         if (Input.GetKey(KeyCode.S))
         {

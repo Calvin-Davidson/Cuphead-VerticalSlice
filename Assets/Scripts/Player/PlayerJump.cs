@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float jumpStrength;
     [SerializeField] private float maxJumpStrength;
-    [SerializeField] private BoxCollider2D jumpCollider;
-
-    private Rigidbody2D _rigidbody2D;
     [SerializeField] private float currentJumpStrength;
-    private bool _canJump = true;
+    [SerializeField] private float lerpSpeed;
+
+    
+    private Rigidbody2D _rigidbody2D;
+    [SerializeField] private bool _canJump = true;
     private bool _hasSpacePressed;
     
     private void Awake()
@@ -21,23 +21,23 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        Vector3 currentVel = _rigidbody2D.velocity;
         _hasSpacePressed = Input.GetKey(KeyCode.Space);
 
         if (_hasSpacePressed && _canJump)
         {
             currentJumpStrength = maxJumpStrength;
+            currentVel.y += currentJumpStrength;
         }
         
         if (_hasSpacePressed)
         {
-            currentJumpStrength = Mathf.Lerp(currentJumpStrength, 0, 10 * Time.deltaTime);
+            currentJumpStrength = Mathf.Lerp(currentJumpStrength, 0, lerpSpeed * Time.deltaTime);
         }
         else
         {
             currentJumpStrength = 0;
         }
-
-        Vector3 currentVel = _rigidbody2D.velocity;
         currentVel.y += currentJumpStrength;
         _rigidbody2D.velocity = currentVel;
     }
@@ -45,5 +45,6 @@ public class PlayerJump : MonoBehaviour
     public void SetCanJump(bool value)
     {
         _canJump = value;
+        if (value) currentJumpStrength = 0;
     }
 }
