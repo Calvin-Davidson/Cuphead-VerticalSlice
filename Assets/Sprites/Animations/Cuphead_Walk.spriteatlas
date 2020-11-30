@@ -39,7 +39,17 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fe108c70b655a234e9c4521ae652022a, type: 3}
+  - {fileID: 21300000, guid: aab9ca3916d502547916cc26449840fc, type: 3}
+  - {fileID: 21300000, guid: 4a6cce8946339b149ad1572687317b48, type: 3}
+  - {fileID: 21300000, guid: b8ae8f6ef04c4f9468da1b2d8c6da194, type: 3}
+  - {fileID: 21300000, guid: 047aabfe046cbc446a1634974df9c6c0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Cuphead_Walk0004
+  - Cuphead_Walk0005
+  - Cuphead_Walk0001
+  - Cuphead_Walk0002
+  - Cuphead_Walk0003
   m_Tag: Cuphead_Walk
   m_IsVariant: 0
