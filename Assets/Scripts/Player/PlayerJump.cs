@@ -5,15 +5,12 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float maxJumpStrength;
     [SerializeField] private float currentJumpStrength;
-    [SerializeField] private float lerpSpeed;
-
-    
-    private Rigidbody2D _rigidbody2D;
+    [SerializeField] private float primaryJumpStrength;
+    [SerializeField] private float maxSecondaryJumpStrength;
+    [SerializeField] private float secondaryJumpFalloffSpeed;
     [SerializeField] private bool _canJump = true;
-    private bool _hasSpacePressed;
-    
+    private Rigidbody2D _rigidbody2D;
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -22,17 +19,19 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         Vector3 currentVel = _rigidbody2D.velocity;
-        _hasSpacePressed = Input.GetKey(KeyCode.Space);
-
-        if (_hasSpacePressed && _canJump)
+        if (Input.GetKey(KeyCode.Space))
         {
-            currentJumpStrength = maxJumpStrength;
-            currentVel.y += currentJumpStrength;
-        }
-        
-        if (_hasSpacePressed)
-        {
-            currentJumpStrength = Mathf.Lerp(currentJumpStrength, 0, lerpSpeed * Time.deltaTime);
+            if (_canJump)
+            {
+                currentJumpStrength = maxSecondaryJumpStrength;
+                currentVel.y += primaryJumpStrength;
+                _canJump = false;
+            }
+            else
+            {
+                currentJumpStrength = Mathf.Lerp(currentJumpStrength, 0, secondaryJumpFalloffSpeed * Time.deltaTime);
+                currentJumpStrength = Mathf.Round(currentJumpStrength * 1000f) / 1000f;
+            }
         }
         else
         {
