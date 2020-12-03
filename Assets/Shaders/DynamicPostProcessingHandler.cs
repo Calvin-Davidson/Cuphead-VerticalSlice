@@ -10,7 +10,7 @@ public class DynamicPostProcessingHandler : MonoBehaviour
     [SerializeField] private List<float> valuesListOnEnable = new List<float>(); //Values for ^. Must be of equal length as ^
     [SerializeField] private List<string> keysListOnDisable = new List<string>(); //Names of float properties to change on disable
     [SerializeField] private List<float> valuesListOnDisable = new List<float>(); //Values for ^. Must be of equal length as ^
-    private Material material = null;
+    private Material materialReference = null;
 
     private void Start()
     {
@@ -18,15 +18,15 @@ public class DynamicPostProcessingHandler : MonoBehaviour
         {
             return;
         }
-        material = postProcessingEffect.customRenderPas.material; //Get material reference
+        materialReference = postProcessingEffect.customRenderPass.materialReference;
         for (int i = 0; i < keysListOnDisable.Count; i++)
         {
-            material.SetFloat(keysListOnDisable[i], valuesListOnDisable[i]); //On start, disable values
+            materialReference.SetFloat(keysListOnDisable[i], valuesListOnDisable[i]);
         }
     }
     void Update()
     {
-        if (material == null)
+        if (materialReference == null)
         {
             return;
         }
@@ -34,7 +34,7 @@ public class DynamicPostProcessingHandler : MonoBehaviour
         {
             for (int i = 0; i < keysListOnEnable.Count; i++) //Because of how this for loop is handled, if valuesList.Count < keysList.Count, there will be errors
             {
-                material.SetFloat(keysListOnEnable[i], valuesListOnEnable[i]);
+                materialReference.SetFloat(keysListOnEnable[i], valuesListOnEnable[i]);
             }
         }
 
@@ -42,7 +42,7 @@ public class DynamicPostProcessingHandler : MonoBehaviour
         {
             for (int i = 0; i < keysListOnDisable.Count; i++)
             {
-                material.SetFloat(keysListOnDisable[i], valuesListOnDisable[i]);
+                materialReference.SetFloat(keysListOnDisable[i], valuesListOnDisable[i]);
             }
         }
     }

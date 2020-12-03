@@ -59,7 +59,7 @@ Material:
     - _NoiseMaskTexture:
         m_Texture: {fileID: 2800000, guid: 5ad22a49b60dd2c4c9f5bc7d3051a95e, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -1.47, y: 0}
+        m_Offset: {x: -0.8, y: -0.2}
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: 5ad22a49b60dd2c4c9f5bc7d3051a95e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -124,29 +124,30 @@ Material:
     - _desaturationBrightness: 0.118
     - _desaturationStrength: 1
     - _frequency: 3.28
-    - _gain: 1
-    - _lacunarity: 4.04
+    - _gain: 0.836
+    - _lacunarity: 2.76
     - _maskIntensity: 1.44
     - _monochromatic: 1
     - _noiseIntensity: 0.997
     - _noiseMask: 0.284
-    - _noiseMaskIntensity: 0.066
+    - _noiseMaskIntensity: 0.053
     - _noiseMaskScale: 1
     - _noiseMaskSpeedU: -1.47
     - _noiseMaskSpeedV: 0
     - _noiseScale: 1
     - _noiseSpeedU: 1.7
     - _noiseSpeedV: -0.25
-    - _octaves: 7
-    - _offsetX: -5.13
+    - _octaves: 5
+    - _offsetX: 0
     - _offsetY: 0
-    - _overlayIntensity: 0.075
+    - _overlayIntensity: 0.15
     - _overlayScale: 3
-    - _power: 4.34
+    - _power: 5
     - _range: 0.041
     - _scale: 3
-    - _speedU: 1.31
-    - _speedV: 0
+    - _speedU: 2.81
+    - _speedV: 2.97
+    - _strength: -1.06
     - _value: -2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
