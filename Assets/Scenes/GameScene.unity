@@ -2246,9 +2246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentJumpStrength: 0
-  primaryJumpStrength: 1
+  primaryJumpStrength: 1.2
   maxSecondaryJumpStrength: 0.85
-  secondaryJumpFalloffSpeed: 18
+  secondaryJumpFalloffSpeed: 10
   _canJump: 1
 --- !u!1 &2044805449
 GameObject:

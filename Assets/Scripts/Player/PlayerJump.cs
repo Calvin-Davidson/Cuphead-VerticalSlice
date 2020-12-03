@@ -16,7 +16,7 @@ public class PlayerJump : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 currentVel = _rigidbody2D.velocity;
         if (Input.GetKey(KeyCode.Space))
@@ -37,7 +37,7 @@ public class PlayerJump : MonoBehaviour
         {
             currentJumpStrength = 0;
         }
-        currentVel.y += currentJumpStrength;
+        currentVel.y += currentJumpStrength * Time.deltaTime * 144; //account for 144FPS
         _rigidbody2D.velocity = currentVel;
     }
 
