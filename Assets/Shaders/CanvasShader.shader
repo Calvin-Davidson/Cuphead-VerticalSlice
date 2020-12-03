@@ -61,15 +61,13 @@
                     float colR = a.r + alpha * (b.r - a.r);
                     float colG = a.g + alpha * (b.g - a.g);
                     float colB = a.b + alpha * (b.b - a.b);
-                    float colW = a.w + alpha * (b.w - a.w);
+                    float colW = a.a + alpha * (b.a - a.a);
                     fixed4 returnValue = fixed4(colR, colG, colB, colW);
                     return returnValue;
                 }
 
-                float clamp(float input, float min, float max) {
-                    if (input > max) { input = max; }
-                    if (input < min) { input = min; }
-                    return input;
+                float lerp(float a, float b, float alpha) {
+                    return a + alpha * (b - a);
                 }
 
                 fixed4 frag(SHADERDATA i) : SV_Target // Main shader
@@ -89,24 +87,24 @@
                     fixed4 maskColor = tex2D(_MaskTexture, maskUV);
                     fixed4 maskColorGraded = col;
 
-                    //col.r = col.r * _colorGrade.r;
-                    //col.g = col.g * _colorGrade.g;
-                    //col.b = col.b * _colorGrade.b;
+                    col.r = col.r * _colorGrade.r;
+                    col.g = col.g * _colorGrade.g;
+                    col.b = col.b * _colorGrade.b;
 
                     // Desaturation gets handled before everything else to not interfere with the overlay or noise masks
-                    /*if (_desaturate > 0) {
+                    if (_desaturate > 0) {
                         fixed4 desaturation = fixed4(0.3 * col.r, 0.6 * col.g, 0.1 * col.b, 1.0f); // DesaturationTable
                         col.r = col.r + _desaturationStrength * (desaturation - col.r) + _desaturationBrightness; // Desaturate but add a brightness value to ensure the scene doesn't get too dark.
                         col.g = col.g + _desaturationStrength * (desaturation - col.g) + _desaturationBrightness;
                         col.b = col.b + _desaturationStrength * (desaturation - col.b) + _desaturationBrightness;
-                    }*/
-                    if (overlayColor.w > 0) {
-                        overlayColorGraded = lerp4(col,overlayColor,overlayColor.w);
+                    }
+                    if (overlayColor.a > 0) {
+                        overlayColorGraded = lerp4(col,overlayColor,overlayColor.a);
                     }
                     maskColorGraded = col * maskColor;
                     fixed4 col1 = lerp4(col, maskColorGraded, _maskIntensity);
                     fixed4 col2 = lerp4(col, overlayColorGraded, _overlayIntensity);
-                    float lerpRatio = clamp(overlayColor.w,0.0, 1.0);
+                    float lerpRatio = lerp(0, overlayColor.a, _overlayIntensity);
                     col = lerp4(col1, col2, lerpRatio);
                     return col;
                 }
