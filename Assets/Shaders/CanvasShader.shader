@@ -106,7 +106,7 @@
                     maskColorGraded = col * maskColor;
                     fixed4 col1 = lerp4(col, maskColorGraded, _maskIntensity);
                     fixed4 col2 = lerp4(col, overlayColorGraded, _overlayIntensity);
-                    float lerpRatio = clamp((_overlayIntensity + overlayColor.w),0.0, 1.0);
+                    float lerpRatio = clamp(overlayColor.w,0.0, 1.0);
                     col = lerp4(col1, col2, lerpRatio);
                     return col;
                 }
