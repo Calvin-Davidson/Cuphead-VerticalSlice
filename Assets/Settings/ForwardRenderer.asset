@@ -51,6 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    materialReference: {fileID: 2100000, guid: fb47eb73bab398c43ab66bc258dbeec7, type: 2}
+    materialReference: {fileID: 2100000, guid: 597cc6b57405b61449c2303c1721f944, type: 2}
     customIdentifier: CustomRenderPass
     renderPassEvent: 550
