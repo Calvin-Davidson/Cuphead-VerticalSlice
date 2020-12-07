@@ -10,6 +10,8 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float maxSecondaryJumpStrength;
     [SerializeField] private float secondaryJumpFalloffSpeed;
     [SerializeField] private bool _canJump = true;
+    [SerializeField] private Animator animator;
+    
     private Rigidbody2D _rigidbody2D;
     private void Awake()
     {
@@ -36,6 +38,10 @@ public class PlayerJump : MonoBehaviour
         else
         {
             currentJumpStrength = 0;
+        }
+
+        if (currentJumpStrength > 0)
+        {
         }
         currentVel.y += currentJumpStrength * Time.deltaTime * 144; //account for 144FPS
         _rigidbody2D.velocity = currentVel;
