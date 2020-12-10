@@ -651,12 +651,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 1
   canAttack: 0
+  attackAnimationIsDone: 1
   useAttackRange: 1
   attackRange: 5
   player: {fileID: 1914341838}
   bulletPrefab: {fileID: 3068144200224320703, guid: d1d83ec4b5e542249aced1b0e217a51f,
     type: 3}
   animator: {fileID: 783432250}
+  bulletOffset: {x: 0, y: 0, z: 0}
 --- !u!70 &783432248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1784,8 +1786,6 @@ MonoBehaviour:
   playerTransform: {fileID: 1914341841}
   parentObj: {fileID: 286934224}
   tolerance: 0.1
-  debugObjPrevPos: {fileID: 1098973453}
-  debugObjNextPos: {fileID: 1326391922}
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -2494,6 +2494,7 @@ MonoBehaviour:
   maxSecondaryJumpStrength: 0.85
   secondaryJumpFalloffSpeed: 10
   _canJump: 1
+  animator: {fileID: 1914341839}
 --- !u!1 &2044805449
 GameObject:
   m_ObjectHideFlags: 0

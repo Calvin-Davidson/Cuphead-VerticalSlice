@@ -20,7 +20,6 @@ public abstract class BaseEnemy : MonoBehaviour
         }
         if (canAttack && attackAnimationIsDone)
         {
-            Debug.Log("attacking");
             _attackTimer += Time.deltaTime;
             if (_attackTimer >= attackSpeed)
             {

@@ -40,7 +40,7 @@ public class PlayerJump : MonoBehaviour
             currentJumpStrength = 0;
         }
 
-        if (currentJumpStrength > 0 || currentVel.y < 0)
+        if (currentJumpStrength > 0 || currentVel.y < 0 || _canJump == false)
         {
             animator.SetBool("isJumping", true);
         }

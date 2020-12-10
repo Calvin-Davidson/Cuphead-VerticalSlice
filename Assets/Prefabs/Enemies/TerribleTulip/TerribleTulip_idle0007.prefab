@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7543271809067537981}
   - component: {fileID: 7543271809067537954}
   - component: {fileID: 972559674589080930}
+  - component: {fileID: 1382456853890721381}
   m_Layer: 0
   m_Name: TerribleTulip_idle0007
   m_TagString: Untagged
@@ -116,5 +117,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpeed: 2
+  canAttack: 1
+  attackAnimationIsDone: 1
+  useAttackRange: 0
+  attackRange: 0
+  player: {fileID: 0}
   bulletPrefab: {fileID: 3068144200224320703, guid: d1d83ec4b5e542249aced1b0e217a51f,
     type: 3}
+  animator: {fileID: 0}
+  bulletOffset: {x: 0, y: 0, z: 0}
+--- !u!70 &1382456853890721381
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543271809067537955}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.25177574, y: 0.5837803}
+  m_Size: {x: 0.99430466, y: 2.0125256}
+  m_Direction: 0
