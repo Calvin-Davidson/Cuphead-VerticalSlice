@@ -6,17 +6,30 @@ using UnityEngine;
 
 public class TerribleTulipBulletCollision : MonoBehaviour
 {
-
+    [SerializeField] private Animator animator;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject spriteObject;
+    
+    [SerializeField] Vector3 explosionSpriteOffset;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         print(other.gameObject.tag);
         if (other.gameObject.tag.Equals("Floors"))
         {
-            GetComponent<Animator>().SetBool("explode", true);
-            this.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
-            bool b = (GetComponent<Rigidbody2D>().constraints & RigidbodyConstraints2D.FreezeAll) !=
-                RigidbodyConstraints2D.FreezeAll;
+            animator.SetBool("explode", true);
+            gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+            var position = transform.position;
+            spriteObject.transform.position = new Vector3(position.x, position.y + 1.65f, position.z);
+            
+            rb.freezeRotation = true;
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         }
+    }
+
+    private void Awake()
+    {
+        Destroy(this, 25f);
     }
 }
