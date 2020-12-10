@@ -40,9 +40,15 @@ public class PlayerJump : MonoBehaviour
             currentJumpStrength = 0;
         }
 
-        if (currentJumpStrength > 0)
+        if (currentJumpStrength > 0 || currentVel.y < 0)
         {
+            animator.SetBool("isJumping", true);
         }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
+        
         currentVel.y += currentJumpStrength * Time.deltaTime * 144; //account for 144FPS
         _rigidbody2D.velocity = currentVel;
     }

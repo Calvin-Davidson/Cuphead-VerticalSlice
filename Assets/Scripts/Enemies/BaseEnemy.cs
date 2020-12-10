@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private float attackSpeed; //Delay between attacks
-    [SerializeField] private bool canAttack = true;
+    [SerializeField] protected bool canAttack = true;
+    [SerializeField] protected bool attackAnimationIsDone = true;
     [SerializeField] private bool useAttackRange = false;
     [SerializeField] private float attackRange;
     [SerializeField] private GameObject player;
@@ -17,7 +18,7 @@ public abstract class BaseEnemy : MonoBehaviour
             float distance = Vector3.Distance(player.transform.position, this.transform.position);
             canAttack = distance <= attackRange;
         }
-        if (canAttack)
+        if (canAttack && attackAnimationIsDone)
         {
             Debug.Log("attacking");
             _attackTimer += Time.deltaTime;

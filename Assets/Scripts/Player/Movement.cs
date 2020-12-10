@@ -9,11 +9,11 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) //If both left and right are pressed or neither are pressed
         {
-            animator.Play("Cuphead_Idle");
+            animator.SetBool("isRunning", false);
             return;
         }
-        
-        animator.Play("Cuphead_Walk");
+            
+        animator.SetBool("isRunning", true);
 
         Vector3 localScale = transform.localScale;
         
