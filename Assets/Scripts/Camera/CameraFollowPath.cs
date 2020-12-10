@@ -12,10 +12,6 @@ public class CameraFollowPath : MonoBehaviour
     private int _previousLocation = 0;
     private int _nextLocation = 1;
 
-    // Debug visualization of the 2 points the camera is bound by in the editor
-    [SerializeField] private GameObject debugObjPrevPos;
-    [SerializeField] private GameObject debugObjNextPos;
-
     private void Awake()
     {
         _locations = new List<Vector3>();
@@ -28,9 +24,9 @@ public class CameraFollowPath : MonoBehaviour
 
         var currentTransform = transform.position;
         var targetPos = _locations[_nextLocation];
-        targetPos.z = currentTransform.z; // Never affect z
+        targetPos.z = currentTransform.z; 
         targetPos.y = Vector3.MoveTowards(currentTransform, targetPos, 100 * Time.deltaTime).y;
-        targetPos.x = playerTransform.position.x; // Use player x
+        targetPos.x = playerTransform.position.x; 
         transform.position = targetPos;
     }
 
@@ -67,7 +63,7 @@ public class CameraFollowPath : MonoBehaviour
     {
         Vector3 startingPos = transform.position;
         var targetPos = target;
-        targetPos.z = startingPos.z; // Never change z
+        targetPos.z = startingPos.z; 
         // Lerp between the y values of the previous point and the next point, depending on how far the camera is between them in a 0-1 ratio
         targetPos.y = Mathf.Lerp(_locations[_previousLocation].y, _locations[_nextLocation].y, CalculateCameraSpeed());
         targetPos.x = playerTransform.position.x; // Use player x

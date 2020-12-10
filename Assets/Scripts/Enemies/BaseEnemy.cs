@@ -4,14 +4,28 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private float attackSpeed; //Delay between attacks
+    [SerializeField] private bool canAttack = true;
+    [SerializeField] private bool useAttackRange = false;
+    [SerializeField] private float attackRange;
+    [SerializeField] private GameObject player;
     private float _attackTimer;
+
     private void Update()
     {
-        _attackTimer += Time.deltaTime;
-        if (_attackTimer >= attackSpeed)
+        if(player != null && useAttackRange)
         {
-            Attack();
-            _attackTimer -= attackSpeed; //Subtracts attackspeed from the attack timer instead of setting it to 0 to ensure consistent firerate when frame stutters happen
+            float distance = Vector3.Distance(player.transform.position, this.transform.position);
+            canAttack = distance <= attackRange;
+        }
+        if (canAttack)
+        {
+            Debug.Log("attacking");
+            _attackTimer += Time.deltaTime;
+            if (_attackTimer >= attackSpeed)
+            {
+                Attack();
+                _attackTimer -= attackSpeed; //Subtracts attackspeed from the attack timer instead of setting it to 0 to ensure consistent firerate when frame stutters happen
+            }
         }
     }
 
