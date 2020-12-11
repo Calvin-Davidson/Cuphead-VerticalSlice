@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 7543271809067537955}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08ba9be38b90b834da5083263575bd1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8f3fca38d23523e439ce5ff6464c92c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -140,8 +140,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25177574, y: 0.5837803}
-  m_Size: {x: 0.99430466, y: 2.0125256}
+  m_Offset: {x: -0.38732505, y: -0.42416406}
+  m_Size: {x: 1.084693, y: 2.2390285}
   m_Direction: 0
 --- !u!114 &5636426918559789256
 MonoBehaviour:
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   animator: {fileID: 7543271809067537954}
-  deathAnimationName: TerribleT_DeathExplosion
+  deathAnimationName: TerribleTulip_death

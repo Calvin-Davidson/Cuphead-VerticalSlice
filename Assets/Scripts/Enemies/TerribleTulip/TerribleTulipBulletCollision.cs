@@ -25,6 +25,10 @@ public class TerribleTulipBulletCollision : MonoBehaviour
             rb.freezeRotation = true;
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         }
+        else
+        {
+            Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
+        }
     }
 
     private void Awake()

@@ -19,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (deathAnimationName == "none") return;
         animator.Play(deathAnimationName);
     }
 }

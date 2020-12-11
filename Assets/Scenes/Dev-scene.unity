@@ -678,7 +678,7 @@ PrefabInstance:
     - target: {fileID: 972559674589080930, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972559674589080930, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
@@ -706,10 +706,30 @@ PrefabInstance:
       propertyPath: bulletOffset.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1382456853890721381, guid: 720f4589212503c45946e8ead5ebb521,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2348056
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382456853890721381, guid: 720f4589212503c45946e8ead5ebb521,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.779145
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382456853890721381, guid: 720f4589212503c45946e8ead5ebb521,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.37202615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382456853890721381, guid: 720f4589212503c45946e8ead5ebb521,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5444159
+      objectReference: {fileID: 0}
     - target: {fileID: 5636426918559789256, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
       propertyPath: deathAnimationName
-      value: TerribleT_DeathExplosion
+      value: TerribleTulip_death
       objectReference: {fileID: 0}
     - target: {fileID: 7543271809067537955, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
@@ -749,7 +769,7 @@ PrefabInstance:
     - target: {fileID: 7543271809067537980, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.584
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 7543271809067537980, guid: 720f4589212503c45946e8ead5ebb521,
         type: 3}
