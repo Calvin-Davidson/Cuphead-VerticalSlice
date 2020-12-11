@@ -22,19 +22,18 @@ public class BulletMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("collision");
         print(other.gameObject.tag);
         if (other.gameObject.name == "Player")
         {
             Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
             return;
         }
-
-        if (other.gameObject.name.StartsWith("TerribleTulip"))
+        
+        if (other.gameObject.tag.Equals("Enemy"))
         {
-            Debug.Log("Enemy");
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
         }
         
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

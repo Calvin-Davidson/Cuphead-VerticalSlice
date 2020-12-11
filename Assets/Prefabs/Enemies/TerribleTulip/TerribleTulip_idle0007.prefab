@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5636426918559789256}
   m_Layer: 0
   m_Name: TerribleTulip_idle0007
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   useAttackRange: 0
   attackRange: 0
   player: {fileID: 0}
-  bulletPrefab: {fileID: 3068144200224320703, guid: d1d83ec4b5e542249aced1b0e217a51f,
+  bulletPrefab: {fileID: 5978591936191920572, guid: 07dc1862c3dd4884c9677e295d2f9439,
     type: 3}
   animator: {fileID: 0}
   bulletOffset: {x: 0, y: 0, z: 0}
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   animator: {fileID: 7543271809067537954}
-  deathAnimationBoolean: none
+  deathAnimationName: TerribleT_DeathExplosion

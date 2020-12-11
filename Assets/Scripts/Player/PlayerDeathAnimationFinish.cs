@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class deathAnimationPlayEvents : StateMachineBehaviour
+public class PlayerDeathAnimationFinish : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,14 +16,14 @@ public class deathAnimationPlayEvents : StateMachineBehaviour
     {
         if (layerIndex >= stateInfo.length)
         {
-            Destroy(animator.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }  
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Destroy(animator.gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

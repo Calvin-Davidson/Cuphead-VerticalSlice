@@ -12,7 +12,7 @@ public class TerribleTulip : BaseEnemy
     [SerializeField] private Vector3 bulletOffset;
     protected override void Attack()
     {
-        animator.SetBool("shoot", true);
+        //animator.SetBool("shoot", true);
         GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity); 
         
         Rigidbody2D rigidbody2D = bullet.GetComponent<Rigidbody2D>(); 
@@ -26,7 +26,7 @@ public class TerribleTulip : BaseEnemy
 
     public void setCanAttackTrue()
     {
-        animator.SetBool("shoot", false);
+        //animator.SetBool("shoot", false);
         this.attackAnimationIsDone = true;
     }
 }

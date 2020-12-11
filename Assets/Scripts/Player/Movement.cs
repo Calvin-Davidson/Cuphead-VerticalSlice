@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    
     [SerializeField] private float movementSpeed = 3f;
     [SerializeField] private Animator animator;
     void Update()
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A)) //Move left
         {
+            
             this.transform.position += new Vector3(-movementSpeed * Time.deltaTime, 0, 0);
             transform.localScale = new Vector3(-Math.Abs(localScale.x), localScale.y, localScale.z);
         }

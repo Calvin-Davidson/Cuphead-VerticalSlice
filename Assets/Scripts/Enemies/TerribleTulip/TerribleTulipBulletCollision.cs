@@ -14,7 +14,6 @@ public class TerribleTulipBulletCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print(other.gameObject.tag);
         if (other.gameObject.tag.Equals("Floors"))
         {
             animator.SetBool("explode", true);

@@ -655,7 +655,7 @@ MonoBehaviour:
   useAttackRange: 1
   attackRange: 5
   player: {fileID: 1914341838}
-  bulletPrefab: {fileID: 3068144200224320703, guid: d1d83ec4b5e542249aced1b0e217a51f,
+  bulletPrefab: {fileID: 5978591936191920572, guid: 07dc1862c3dd4884c9677e295d2f9439,
     type: 3}
   animator: {fileID: 783432250}
   bulletOffset: {x: 0, y: 0, z: 0}
