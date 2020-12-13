@@ -20,6 +20,8 @@ public class BulletMovement : MonoBehaviour
     }
 
 
+    
+    // todo move to new script, or remove current script. ( has nothing to do with bulletMovement )
     private void OnCollisionEnter2D(Collision2D other)
     {
         print(other.gameObject.tag);
