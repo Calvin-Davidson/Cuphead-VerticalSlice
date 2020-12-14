@@ -121,7 +121,7 @@ Material:
     - _ZWrite: 1
     - _amplitude: 5
     - _desaturate: 0
-    - _desaturationBrightness: 0.118
+    - _desaturationBrightness: 0.15
     - _desaturationStrength: 1
     - _frequency: 3.28
     - _gain: 0.836
