@@ -30,9 +30,4 @@ public class TerribleTulipBulletCollision : MonoBehaviour
             Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
         }
     }
-
-    private void Awake()
-    {
-        Destroy(this, 25f);
-    }
 }

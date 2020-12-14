@@ -15,7 +15,10 @@ public class TerribleTulip : BaseEnemy
         animator.SetBool("shoot", true);
         
         StartCoroutine(disableShootAnimation());
-        
+    }
+
+    public void InstantiateBullet()
+    {
         GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity); 
         
         Rigidbody2D rigidbody2D = bullet.GetComponent<Rigidbody2D>(); 
@@ -25,8 +28,6 @@ public class TerribleTulip : BaseEnemy
         
         Destroy(bullet, 10f);
     }
-
-
     public void setCanAttackTrue()
     {
         //animator.SetBool("shoot", false);

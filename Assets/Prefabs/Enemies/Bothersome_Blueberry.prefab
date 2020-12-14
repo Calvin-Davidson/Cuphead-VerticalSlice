@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   animator: {fileID: 6654519544006913514}
-  deathAnimationName: none
+  deathAnimationBooleanVariable: none
 --- !u!58 &366187598220420202
 CircleCollider2D:
   m_ObjectHideFlags: 0

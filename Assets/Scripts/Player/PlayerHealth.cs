@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private MonoBehaviour[] disableOnDie;
     public void TakeDamage(int dmg)
     {
-        Debug.Log("dmg");
         health -= dmg;
         if (health <= 0)
         {
