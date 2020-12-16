@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     private static readonly int Schiet = Animator.StringToHash("schiet");
-    
+    private static readonly int SchietDirectionX = Animator.StringToHash("SchietDirectionX");
+    private static readonly int SchietDirectionY = Animator.StringToHash("SchietDirectionY");
+
     public GameObject bulletObj;
     public float shootCooldown;
     [SerializeField] private Animator playerAnimator;
@@ -55,8 +57,8 @@ public class PlayerShooting : MonoBehaviour
             _direction.x = Input.GetAxisRaw("Horizontal");
             _direction.y = Input.GetAxisRaw("Vertical");
 
-            playerAnimator.SetInteger("SchietDirectionX", (int) _direction.x);
-            playerAnimator.SetInteger("SchietDirectionY", (int) _direction.y);
+            playerAnimator.SetInteger(SchietDirectionX, (int) _direction.x);
+            playerAnimator.SetInteger(SchietDirectionY, (int) _direction.y);
 
             if (_direction.Equals(new Vector3(0, -1)))
             {
