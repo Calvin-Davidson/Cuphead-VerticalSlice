@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    private static readonly int Schiet = Animator.StringToHash("schiet");
+    private static readonly int isShooting = Animator.StringToHash("isShooting");
     
     public GameObject bulletObj;
     public float shootCooldown;
@@ -25,27 +25,27 @@ public class PlayerShooting : MonoBehaviour
     {
         _lastSchot += Time.deltaTime;
 
-        if (_lastSchot > shootCooldown * 2)
+        if (_lastSchot > shootCooldown)
         {
-            playerAnimator.SetBool(Schiet, false);
+            playerAnimator.SetBool(isShooting, false);
         }
 
         Vector3 prevPos = _previousPosition;
         _previousPosition = transform.position;
 
-        if (prevPos != transform.position)
+        /*if (prevPos != transform.position)
         {
             return;
-        }
+        }*/
 
         // Simple anti spam timer
         if (!_canShoot)
         {
             _shootCoolDownTimer += Time.deltaTime;
-            if (_shootCoolDownTimer > shootCooldown * 2)
+            if (_shootCoolDownTimer > shootCooldown)
             {
                 _canShoot = true;
-                _shootCoolDownTimer = 0.0f;
+                _shootCoolDownTimer -= shootCooldown;
             }
         }
 
@@ -55,8 +55,8 @@ public class PlayerShooting : MonoBehaviour
             _direction.x = Input.GetAxisRaw("Horizontal");
             _direction.y = Input.GetAxisRaw("Vertical");
 
-            playerAnimator.SetInteger("SchietDirectionX", (int) _direction.x);
-            playerAnimator.SetInteger("SchietDirectionY", (int) _direction.y);
+            playerAnimator.SetInteger("shootDirectionX", (int) _direction.x);
+            playerAnimator.SetInteger("shootDirectionY", (int) _direction.y);
 
             if (_direction.Equals(new Vector3(0, -1)))
             {
@@ -70,6 +70,8 @@ public class PlayerShooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C) && !_direction.Equals(Vector3.zero))
         {
+            playerAnimator.SetInteger("shootDirectionX", (int)_direction.x);
+            playerAnimator.SetInteger("shootDirectionY", (int)_direction.y);
             Shoot(_direction);
             return;
         }
@@ -77,6 +79,8 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C) && _direction.Equals(Vector3.zero) &&
             !_previousValidDirection.Equals(Vector3.zero))
         {
+            playerAnimator.SetInteger("shootDirectionX", (int)_previousValidDirection.x);
+            playerAnimator.SetInteger("shootDirectionY", (int)_previousValidDirection.y);
             Shoot(_previousValidDirection);
             return;
         }
@@ -85,8 +89,8 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot(Vector3 dir)
     {
         _lastSchot = 0;
-        playerAnimator.SetBool(Schiet, true);
-        Vector3 spawnPos = transform.position;
+        playerAnimator.SetBool(isShooting, true);
+        Vector3 spawnPos = transform.position + (dir * 0.5f);
         GameObject obj = Instantiate(bulletObj, spawnPos, Quaternion.LookRotation(dir, Vector3.up));
         Destroy(obj, 30);
 
