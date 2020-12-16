@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d0479321afa229e43af68f15bcba9a0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -185,7 +185,6 @@ MonoBehaviour:
   animator: {fileID: 7008587308239046516}
   rb: {fileID: 2530805086910894615}
   spriteObject: {fileID: 2606602367196262002}
-  explosionSpriteOffset: {x: -0.22, y: 2.3, z: 0}
 --- !u!61 &-1445293901603654496
 BoxCollider2D:
   m_ObjectHideFlags: 0

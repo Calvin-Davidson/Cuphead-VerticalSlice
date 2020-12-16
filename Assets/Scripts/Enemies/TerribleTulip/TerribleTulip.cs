@@ -19,7 +19,7 @@ public class TerribleTulip : BaseEnemy
 
     public void InstantiateBullet()
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity); 
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0.0f, 0.65f, 0.0f) + bulletOffset, Quaternion.identity); 
         
         Rigidbody2D rigidbody2D = bullet.GetComponent<Rigidbody2D>(); 
         
