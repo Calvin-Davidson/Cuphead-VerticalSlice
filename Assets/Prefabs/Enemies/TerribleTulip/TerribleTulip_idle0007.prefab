@@ -126,7 +126,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5978591936191920572, guid: 07dc1862c3dd4884c9677e295d2f9439,
     type: 3}
   animator: {fileID: 7543271809067537954}
-  bulletOffset: {x: 0, y: 0, z: 0}
+  bulletOffset: {x: -0.25, y: 0.2, z: 0}
 --- !u!70 &1382456853890721381
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   animator: {fileID: 7543271809067537954}
-  deathAnimationName: TerribleTulip_death
+  deathAnimationBooleanVariable: none

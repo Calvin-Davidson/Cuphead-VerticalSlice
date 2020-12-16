@@ -28,9 +28,9 @@ public class TerribleTulip : BaseEnemy
         
         Destroy(bullet, 10f);
     }
+    
     public void setCanAttackTrue()
     {
-        //animator.SetBool("shoot", false);
         this.attackAnimationIsDone = true;
     }
 

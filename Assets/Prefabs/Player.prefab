@@ -194,6 +194,7 @@ MonoBehaviour:
   bulletObj: {fileID: 9004585806256922686, guid: 97805441b0c856544b883544a23ddecf,
     type: 3}
   shootCooldown: 0.2
+  playerAnimator: {fileID: 8349453829388490268}
 --- !u!114 &8349453829388490251
 MonoBehaviour:
   m_ObjectHideFlags: 0

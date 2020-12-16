@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -18,7 +19,11 @@ public class EnemyHealth : MonoBehaviour
 
     protected virtual void Die()
     {
-        if (deathAnimationBooleanVariable.Equals("none")) return;
+        if (deathAnimationBooleanVariable.Equals("none"))
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         animator.SetBool("die", true);
     }
 }
