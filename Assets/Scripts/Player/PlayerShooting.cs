@@ -33,11 +33,6 @@ public class PlayerShooting : MonoBehaviour
         Vector3 prevPos = _previousPosition;
         _previousPosition = transform.position;
 
-        /*if (prevPos != transform.position)
-        {
-            return;
-        }*/
-
         // Simple anti spam timer
         if (!_canShoot)
         {
@@ -66,12 +61,16 @@ public class PlayerShooting : MonoBehaviour
             if (!_direction.Equals(Vector3.zero)) _previousValidDirection = _direction;
         }
 
-        if (!_canShoot) return;
+        if (prevPos != transform.position || !_canShoot)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.C) && !_direction.Equals(Vector3.zero))
         {
             playerAnimator.SetInteger("shootDirectionX", (int)_direction.x);
             playerAnimator.SetInteger("shootDirectionY", (int)_direction.y);
+            if(_direction.x != 0) transform.localScale = new Vector3(Math.Abs(transform.localScale.x) * _direction.x, transform.localScale.y, transform.localScale.z);
             Shoot(_direction);
             return;
         }
@@ -81,6 +80,7 @@ public class PlayerShooting : MonoBehaviour
         {
             playerAnimator.SetInteger("shootDirectionX", (int)_previousValidDirection.x);
             playerAnimator.SetInteger("shootDirectionY", (int)_previousValidDirection.y);
+            if (_previousValidDirection.x != 0) transform.localScale = new Vector3(Math.Abs(transform.localScale.x) * _previousValidDirection.x, transform.localScale.y, transform.localScale.z);
             Shoot(_previousValidDirection);
             return;
         }
