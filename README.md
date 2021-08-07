@@ -12,6 +12,11 @@ Language used: C#
 
 Role: Lead programmer
 
+
+## Important links
+  - trello: https://trello.com/b/wVU2xzRa/vertical-slice-cuphead
+  
+  
 ## Project includes
 
 - Custom cuphead assets
@@ -27,5 +32,3 @@ Role: Lead programmer
    * goes up and down and eats everything in it's way
 - Coin
    * a coin that you can pickup
-
-
